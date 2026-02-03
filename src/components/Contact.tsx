@@ -228,9 +228,9 @@ const Contact = () => {
 
 const Footer = () => {
   const socialLinks = [
-    { icon: Github, href: 'https://github.com/sanatanjana', label: 'GitHub' },
-    { icon: Linkedin, href: 'https://linkedin.com/in/sanatanjana', label: 'LinkedIn' },
-    { icon: Instagram, href: 'https://instagram.com/sanatanjana', label: 'Instagram' },
+    { icon: Github, href: 'https://github.com/join2sanu', label: 'GitHub' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/in/sanatan-jana9099/', label: 'LinkedIn' },
+    { icon: Instagram, href: 'https://instagram.com/join2sanu', label: 'Instagram' },
     { icon: Mail, href: 'mailto:iamsanatanjana@gmail.com', label: 'Email' },
     { icon: Phone, href: 'tel:+918144759480', label: 'Phone' },
   ];

@@ -10,7 +10,7 @@ const experiences = [
     description:
       'Leading data analytics initiatives, building dashboards, and implementing data-driven solutions to optimize business operations.',
     achievements: [
-      'Built real-time dashboards for executive decision-making',
+      'Built real-time (Automateddashboards for executive decision-making',
       'Automated 15+ reporting workflows saving 20hrs/week',
       'Implemented data quality monitoring systems',
     ],
@@ -18,7 +18,7 @@ const experiences = [
   },
   {
     company: 'Credgenic',
-    role: 'Data Analyst',
+    role: 'MIS Analyst',
     period: 'May 2025 – July 2025',
     location: 'India',
     description:
@@ -32,7 +32,7 @@ const experiences = [
   },
   {
     company: 'Zenth Smart Learn Pvt Ltd',
-    role: 'Data Analyst',
+    role: 'MIS Executive',
     period: 'February 2023 – May 2025',
     location: 'India',
     description:

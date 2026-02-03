@@ -5,8 +5,8 @@ const skills = [
   {
     name: 'Advanced Excel',
     icon: FileSpreadsheet,
-    description: 'Pivot Tables, VLOOKUP, Macros, Data Modeling',
-    proficiency: 95,
+    description: 'Pivot Tables, VLOOKUP, Macros, Data Modeling, Power Query, Power Pivot',
+    proficiency: 98,
     level: 'Expert',
   },
   {
@@ -20,7 +20,7 @@ const skills = [
     name: 'Google Sheets',
     icon: FileSpreadsheet,
     description: 'Apps Script, Automation, Collaborative Analytics',
-    proficiency: 92,
+    proficiency: 98,
     level: 'Expert',
   },
   {
