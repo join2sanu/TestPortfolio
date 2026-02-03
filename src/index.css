@@ -84,6 +84,11 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Space Grotesk', sans-serif;
   }
+
+  ::selection {
+    background: hsl(160 84% 39% / 0.3);
+    color: hsl(210 40% 98%);
+  }
 }
 
 @layer components {
