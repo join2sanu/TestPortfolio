@@ -36,12 +36,12 @@ const Header = () => {
       <nav className="container mx-auto px-6 py-4 flex items-center justify-between">
         <motion.a
           href="#home"
-          className="font-display text-xl font-bold text-foreground"
+          className="font-display text-xl font-bold text-foreground flex items-center gap-2"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          <span className="gradient-text">DA</span>
-          <span className="text-foreground">.</span>
+          <span className="gradient-text">SJ</span>
+          <span className="text-muted-foreground text-sm font-normal hidden sm:inline">Sanatan Jana</span>
         </motion.a>
 
         {/* Desktop Navigation */}
