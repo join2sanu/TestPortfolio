@@ -17,7 +17,7 @@ const experiences = [
     current: true,
   },
   {
-    company: 'Credgenic',
+    company: 'Credgenics',
     role: 'MIS Analyst',
     period: 'May 2025 – July 2025',
     location: 'India',

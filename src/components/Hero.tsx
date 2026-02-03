@@ -155,8 +155,10 @@ const Hero = () => {
               />
             </span>{' '}
             through the power of{' '}
+            <span className="text-primary font-medium">Advance Excel</span>,{' '}
+            <span className="text-primary font-medium">SQL</span>,{' '}
             <span className="text-primary font-medium">Python</span>,{' '}
-            <span className="text-primary font-medium">SQL</span>, and{' '}
+            <span className="text-primary font-medium">Power BI</span>, and{' '}
             <span className="text-primary font-medium">modern visualization tools</span>.
           </motion.p>
 
@@ -202,7 +204,7 @@ const Hero = () => {
             className="flex justify-center gap-8 md:gap-16 mt-16"
           >
             {[
-              { value: '2+', label: 'Years Experience' },
+              { value: '3+', label: 'Years Experience' },
               { value: '10+', label: 'Projects Completed' },
               { value: '6+', label: 'Tools Mastered' },
             ].map((stat, index) => (
