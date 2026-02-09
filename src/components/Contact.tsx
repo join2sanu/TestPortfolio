@@ -1,6 +1,18 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Send, Mail, Github, Linkedin, CheckCircle, Phone, MapPin, Instagram, Download, ArrowUpRight } from 'lucide-react';
+import {
+  Send,
+  Mail,
+  Github,
+  Linkedin,
+  CheckCircle,
+  Phone,
+  MapPin,
+  Instagram,
+  Download,
+  ArrowUpRight,
+} from 'lucide-react';
+import emailjs from 'emailjs-com';
 
 const contactInfo = [
   {
@@ -30,15 +42,34 @@ const Contact = () => {
     message: '',
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Frontend only - simulate submission
-    setIsSubmitted(true);
-    setTimeout(() => {
-      setIsSubmitted(false);
+    setIsLoading(true);
+
+    try {
+      await emailjs.send(
+        'YOUR_SERVICE_ID',   // 🔁 replace
+        'YOUR_TEMPLATE_ID',  // 🔁 replace
+        {
+          from_name: formState.name,
+          from_email: formState.email,
+          message: formState.message,
+        },
+        'YOUR_PUBLIC_KEY'    // 🔁 replace
+      );
+
+      setIsSubmitted(true);
       setFormState({ name: '', email: '', message: '' });
-    }, 3000);
+
+      setTimeout(() => setIsSubmitted(false), 3000);
+    } catch (error) {
+      alert('❌ Failed to send message. Please try again.');
+      console.error('EmailJS error:', error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -49,10 +80,10 @@ const Contact = () => {
     <section id="contact" className="py-24 relative">
       {/* Background accent */}
       <div className="absolute inset-0 overflow-hidden">
-        <motion.div 
+        <motion.div
           animate={{ opacity: [0.3, 0.5, 0.3] }}
           transition={{ duration: 5, repeat: Infinity }}
-          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/10 rounded-full blur-[150px]" 
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/10 rounded-full blur-[150px]"
         />
       </div>
 
@@ -121,7 +152,8 @@ const Contact = () => {
 
             {/* Download Resume Button */}
             <motion.a
-              href="#"
+              href="/resume.pdf" // 🔁 replace with your actual resume file path
+              download
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -202,9 +234,9 @@ const Contact = () => {
 
             <motion.button
               type="submit"
-              whileHover={{ scale: 1.02, boxShadow: "0 0 30px hsl(160 84% 39% / 0.4)" }}
+              whileHover={{ scale: 1.02, boxShadow: '0 0 30px hsl(160 84% 39% / 0.4)' }}
               whileTap={{ scale: 0.98 }}
-              disabled={isSubmitted}
+              disabled={isLoading || isSubmitted}
               className="w-full flex items-center justify-center gap-2 px-8 py-4 bg-primary text-primary-foreground font-display font-semibold rounded-xl glow-effect transition-all duration-300 hover:bg-primary/90 disabled:opacity-70"
             >
               {isSubmitted ? (
@@ -212,6 +244,8 @@ const Contact = () => {
                   <CheckCircle size={20} />
                   Message Sent!
                 </>
+              ) : isLoading ? (
+                <>Sending...</>
               ) : (
                 <>
                   <Send size={20} />
@@ -247,15 +281,11 @@ const Footer = () => {
     <footer className="py-16 border-t border-border relative overflow-hidden">
       {/* Background Glow */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-primary/5 rounded-full blur-[100px]" />
-      
+
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
           {/* Brand */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <a href="#home" className="font-display text-2xl font-bold mb-4 inline-block">
               <span className="gradient-text">Sanatan Jana</span>
             </a>
@@ -275,10 +305,7 @@ const Footer = () => {
             <ul className="space-y-2">
               {quickLinks.map((link) => (
                 <li key={link.name}>
-                  <a
-                    href={link.href}
-                    className="text-muted-foreground hover:text-primary transition-colors text-sm"
-                  >
+                  <a href={link.href} className="text-muted-foreground hover:text-primary transition-colors text-sm">
                     {link.name}
                   </a>
                 </li>
@@ -295,11 +322,17 @@ const Footer = () => {
           >
             <h4 className="font-display font-semibold text-foreground mb-4">Contact</h4>
             <div className="space-y-2 text-sm">
-              <a href="mailto:iamsanatanjana@gmail.com" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
+              <a
+                href="mailto:iamsanatanjana@gmail.com"
+                className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
+              >
                 <Mail size={16} />
                 iamsanatanjana@gmail.com
               </a>
-              <a href="tel:+918144759480" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors">
+              <a
+                href="tel:+918144759480"
+                className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
+              >
                 <Phone size={16} />
                 +91 8144759480
               </a>
@@ -308,21 +341,11 @@ const Footer = () => {
         </div>
 
         <div className="pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-6">
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-muted-foreground text-sm"
-          >
+          <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="text-muted-foreground text-sm">
             © {new Date().getFullYear()} Sanatan Jana. All rights reserved.
           </motion.p>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="flex items-center gap-3"
-          >
+          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="flex items-center gap-3">
             {socialLinks.map((social) => (
               <motion.a
                 key={social.label}
